@@ -480,6 +480,6 @@ MonoBehaviour:
   _defaultHitPoint: 100
   _defaultDamage: 20
   _defaultShotTimeSpeed: 1
-  _defaultSpeed: 2
+  _defaultSpeed: 1
   _attackDistance: 1
-  _timeToReload: 2
+  _timeToReload: 2.5

@@ -568,11 +568,11 @@ MonoBehaviour:
   _hpBar: {fileID: 7974145075470051809}
   _hpBarCanvas: {fileID: 6726758585685779025}
   _calmSprite: {fileID: 21300000, guid: 68544a1cfe7025d4582dcfba293dd371, type: 3}
-  _maxHitPoint: 100
+  _maxHitPoint: 101
   _earningsPerSecond: 1
   _defenderSprite: {fileID: 21300000, guid: b1c6b5df0e039da4e8e0b69be4b61cb5, type: 3}
-  _maxDefenderHitPoint: 150
-  _damage: 10
+  _maxDefenderHitPoint: 201
+  _damage: 15
   _attackDistance: 7
   _timeToReload: 1
 --- !u!1 &7516941414400116197

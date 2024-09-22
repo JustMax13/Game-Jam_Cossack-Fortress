@@ -37,7 +37,7 @@ public class WaveManager : MonoBehaviour
         WaveBaffDictionary = new Dictionary<int, WaveBaff>
         {
             {
-                1, new WaveBaff(1, 1, 1, 2)
+                1, new WaveBaff(1, 1, 1, 3)
             },
             {
                 2, new WaveBaff(1, 1, 1, 3)
@@ -46,7 +46,7 @@ public class WaveManager : MonoBehaviour
                 3, new WaveBaff(1.3f, 1.3f, 1.3f, 3)
             },
             {
-                4, new WaveBaff(1.8f, 1.8f, 1.8f, 3)
+                4, new WaveBaff(1.5f, 1.5f, 1.5f, 3)
             },
             {
                 5, new WaveBaff(1.3f, 1.3f, 1.3f, 5)
@@ -55,7 +55,7 @@ public class WaveManager : MonoBehaviour
                 6, new WaveBaff(1.8f, 1.8f, 1.8f, 5)
             },
             {
-                7, new WaveBaff(1.1f, 1.1f, 1.1f, 7)
+                7, new WaveBaff(1.2f, 1.2f, 1.2f, 7)
             },
             {
                 8, new WaveBaff(1.6f, 1.6f, 1.6f, 7)
@@ -65,6 +65,36 @@ public class WaveManager : MonoBehaviour
             },
             {
                 10, new WaveBaff(2f, 2f, 2f, 13)
+            },
+            {
+                11, new WaveBaff(2f, 2f, 2f, 20)
+            },
+            {
+                12, new WaveBaff(2f, 2f, 2f, 22)
+            },
+            {
+                13, new WaveBaff(2.5f, 2.5f, 2f, 22)
+            },
+            {
+                14, new WaveBaff(2f, 2f, 2f, 13)
+            },
+            {
+                15, new WaveBaff(2f, 2f, 2f, 13)
+            },
+            {
+                16, new WaveBaff(2f, 2f, 2f, 13)
+            },
+            {
+                17, new WaveBaff(2f, 2f, 3f, 25)
+            },
+            {
+                18, new WaveBaff(3f, 3f, 3f, 25)
+            },
+            {
+                19, new WaveBaff(3f, 3f, 3f, 28)
+            },
+            {
+                20, new WaveBaff(3.3f, 3.3f, 3.3f, 30)
             },
 
         };
