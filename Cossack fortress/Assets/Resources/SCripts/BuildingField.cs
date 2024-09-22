@@ -11,15 +11,17 @@ public class BuildingField : MonoBehaviour
 
     [Header("В стані спокою")]
     [SerializeField] private Sprite _calmSprite;
-    [SerializeField] private float _hitPoint;
+    [SerializeField] private float _maxHitPoint;
     [SerializeField] private float _earningsPerSecond;
 
     [Header("В стані захисту")]
     [SerializeField] private Sprite _defenderSprite;
-    [SerializeField] private float _defenderHitPoint;
+    [SerializeField] private float _defenderMaxHitPoint;
     [SerializeField] private float _damage;
     // може ще зона пострілу потрібна буде
 
+    private float _hitPoint;
+    private float _defenderHitPoint;
     private State _curentState;
 
     private void Update()
