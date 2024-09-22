@@ -43,28 +43,28 @@ public class WaveManager : MonoBehaviour
                 2, new WaveBaff(1, 1, 1, 3)
             },
             {
-                3, new WaveBaff(1.1f, 1.1f, 1.1f, 3)
+                3, new WaveBaff(1.3f, 1.3f, 1.3f, 3)
             },
             {
-                4, new WaveBaff(1.2f, 1.2f, 1.2f, 3)
+                4, new WaveBaff(1.8f, 1.8f, 1.8f, 3)
             },
             {
-                5, new WaveBaff(1, 1, 1, 5)
+                5, new WaveBaff(1.3f, 1.3f, 1.3f, 5)
             },
             {
-                6, new WaveBaff(1.2f, 1.2f, 1.2f, 5)
+                6, new WaveBaff(1.8f, 1.8f, 1.8f, 5)
             },
             {
                 7, new WaveBaff(1.1f, 1.1f, 1.1f, 7)
             },
             {
-                8, new WaveBaff(1.4f, 1.4f, 1.4f, 7)
+                8, new WaveBaff(1.6f, 1.6f, 1.6f, 7)
             },
             {
-                9, new WaveBaff(1.4f, 1.4f, 1.4f, 9)
+                9, new WaveBaff(1.2f, 1.2f, 1.2f, 9)
             },
             {
-                10, new WaveBaff(1.5f, 1.5f, 1.5f, 13)
+                10, new WaveBaff(2f, 2f, 2f, 13)
             },
 
         };
