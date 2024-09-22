@@ -19,9 +19,16 @@ public class EnemiesSpawner : MonoBehaviour
     {
         for (int i = 0; i < baff.NumberOfEnemies; i++)
         {
-            var enemy = Instantiate(_defaultEnemy.gameObject, _enemyParent);
+            var enemyGameObject = Instantiate(_defaultEnemy.gameObject, _enemyParent);
             int spawnIndex = Random.Range(0, _spawnPoints.Length - 1);
-            enemy.transform.position = _spawnPoints[spawnIndex].position;
+            enemyGameObject.transform.position = _spawnPoints[spawnIndex].position;
+
+            var enemy = enemyGameObject.GetComponent<Enemy>();
+
+            enemy.Initialization();
+            enemy.HitPoint *= baff.MaxHitPointOn;
+            enemy.Damage *= baff.DamageOn;
+            enemy.Speed *= baff.SpeedOn;
         }
     }
 }

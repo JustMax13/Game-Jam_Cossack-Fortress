@@ -16,7 +16,10 @@ public class WaveManager : MonoBehaviour
     private float _remainedWaveTime;
     private int _waveNumber;
     private bool _allWaveIsEnd;
+
     public Dictionary<int, WaveBaff> WaveBaffDictionary { get; private set; }
+    public bool AllWaveIsEnd { get => _allWaveIsEnd; }
+
     public event Action<WaveBaff> NewWaveIsStart;
 
     public static WaveManager Instance;

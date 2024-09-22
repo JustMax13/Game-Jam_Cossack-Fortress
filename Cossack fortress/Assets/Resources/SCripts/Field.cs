@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Field : MonoBehaviour
 {
-    [SerializeField] private UI_Value _UI_Value;
     [SerializeField] private SpriteRenderer _selectVisual;
+    private UI_Value _UI_Value;
 
     private void Start()
     {
-        _selectVisual.enabled = false;
+        _UI_Value = DefaultFieldValue.Instance.UI_Value;
     }
     private void OnMouseDown()
     {

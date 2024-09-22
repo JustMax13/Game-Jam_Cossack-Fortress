@@ -1,13 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingField : MonoBehaviour
 {
     [Header("Загальне")]
     [SerializeField] private GameObject _defaultFieldPrefab;
     [SerializeField] private SpriteRenderer _thisSpriteRender;
+    [SerializeField] private Slider _hpBar;
+    [SerializeField] private Canvas _hpBarCanvas;
+
 
     [Header("В стані спокою")]
     [SerializeField] private Sprite _calmSprite;
@@ -16,18 +21,34 @@ public class BuildingField : MonoBehaviour
 
     [Header("В стані захисту")]
     [SerializeField] private Sprite _defenderSprite;
-    [SerializeField] private float _defenderMaxHitPoint;
+    [SerializeField] private float _maxDefenderHitPoint;
     [SerializeField] private float _damage;
-    // може ще зона пострілу потрібна буде
+    [SerializeField] private float _attackDistance;
+    [SerializeField] private float _timeToReload;
 
+    private bool _destroyStarted;
     private float _hitPoint;
     private float _defenderHitPoint;
+    private float _currentWaitUntilAttack;
     private State _curentState;
+    private Enemy _targetEnemy;
 
+    private void Start()
+    {
+        _hpBarCanvas.worldCamera = Camera.main;
+        _destroyStarted = false;
+        _hitPoint = _maxHitPoint;
+        _defenderHitPoint = _maxDefenderHitPoint;
+        BuildingsOnMap.Instance.Buildings.Add(this);
+
+        UpdateSlider();
+    }
+    private void OnDestroy()
+    {
+        BuildingsOnMap.Instance.Buildings.Remove(this);
+    }
     private void Update()
     {
-        CheckHitPoints();
-
         switch (_curentState)
         {
             case State.Calm:
@@ -55,8 +76,43 @@ public class BuildingField : MonoBehaviour
     }
     private void InDefenderStateActionPerUpdate() 
     {
-        // Нічо не робимо
+        _targetEnemy = FindClosestEnemy();
+
+        if (_targetEnemy != null)
+            Attack();
     }
+
+    private Enemy FindClosestEnemy()
+    {
+        Enemy closest = null;
+        float minDistance = Mathf.Infinity;
+        Vector3 currentPosition = transform.position;
+
+        foreach (var target in EnemyOnMap.Instance.Enemies)
+        {
+            float distance = Vector3.Distance(currentPosition, target.transform.position);
+            if (distance < minDistance)
+            {
+                closest = target;
+                minDistance = distance;
+            }
+        }
+
+        return closest;
+    }
+
+    private void Attack()
+    {
+        if (_currentWaitUntilAttack <= 0)
+        {
+            _targetEnemy.GetDamage(_damage);
+            RestartTimer();
+        }
+        else
+            _currentWaitUntilAttack -= Time.deltaTime;
+    }
+    private void RestartTimer()
+        => _currentWaitUntilAttack = _timeToReload;
 
     private void CheckHitPoints()
     {
@@ -65,8 +121,12 @@ public class BuildingField : MonoBehaviour
     }
     private void DestroyThisBuilding()
     {
-        throw new System.Exception("Недописаний код");
-        // треба буде реалізувати ще повернення значень пустого поля ( щоб при натисканні мона було купити )
+        if (_destroyStarted) return;
+        var defaultField = Instantiate(_defaultFieldPrefab, gameObject.transform.parent);
+        defaultField.transform.position = gameObject.transform.position;
+
+        _destroyStarted = true;
+        Destroy(gameObject);
     }
     private void ChangeState()
     {
@@ -85,8 +145,46 @@ public class BuildingField : MonoBehaviour
                     break;
                 }
         }
+
+        UpdateSlider();
     }
 
+    public void GetDamage(float damage)
+    {
+        switch (_curentState)
+        {
+            case State.Calm:
+                {
+                    _hitPoint -= damage;
+                    break;
+                }
+            case State.Defender:
+                {
+                    _defenderHitPoint -= damage;
+                    break;
+                }
+        }
+
+        CheckHitPoints();
+        UpdateSlider();
+    }
+
+    private void UpdateSlider()
+    {
+        switch (_curentState)
+        {
+            case State.Calm:
+                {
+                    _hpBar.value = _hitPoint / _maxHitPoint;
+                    break;
+                }
+            case State.Defender:
+                {
+                    _hpBar.value = _defenderHitPoint / _maxDefenderHitPoint;
+                    break;
+                }
+        }
+    }
 
     enum State
     {
